@@ -6,3 +6,8 @@
 .vs/
 *.user
 *.suo
+
+# Variables locales
+.env
+.env.*
+!.env.example
