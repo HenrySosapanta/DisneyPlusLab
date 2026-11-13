@@ -1,0 +1,66 @@
+@model DisneyPlusLab.Models.Contenido
+ 
+@{
+    ViewData["Title"] = "Nuevo contenido";
+}
+ 
+<h1>Nuevo contenido</h1>
+ 
+<form asp-action="Create" method="post">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+ 
+    <div class="mb-3">
+        <label asp-for="Titulo" class="form-label"></label>
+        <input asp-for="Titulo" class="form-control" />
+        <span asp-validation-for="Titulo" class="text-danger"></span>
+    </div>
+ 
+    <div class="mb-3">
+        <label asp-for="Descripcion" class="form-label"></label>
+        <textarea asp-for="Descripcion" class="form-control"></textarea>
+        <span asp-validation-for="Descripcion" class="text-danger"></span>
+    </div>
+ 
+    <div class="mb-3">
+        <label asp-for="Tipo" class="form-label"></label>
+        <select asp-for="Tipo" class="form-select">
+            <option value="">Seleccione...</option>
+            <option>Película</option>
+            <option>Serie</option>
+            <option>Documental</option>
+            <option>Corto</option>
+        </select>
+        <span asp-validation-for="Tipo" class="text-danger"></span>
+    </div>
+ 
+    <div class="row">
+        <div class="col-md-6 mb-3">
+            <label asp-for="FechaEstreno" class="form-label"></label>
+            <input asp-for="FechaEstreno" class="form-control" />
+            <span asp-validation-for="FechaEstreno" class="text-danger"></span>
+        </div>
+        <div class="col-md-6 mb-3">
+            <label asp-for="DuracionMinutos" class="form-label"></label>
+            <input asp-for="DuracionMinutos" class="form-control" />
+            <span asp-validation-for="DuracionMinutos" class="text-danger"></span>
+        </div>
+    </div>
+ 
+    <div class="mb-3">
+        <label asp-for="Clasificacion" class="form-label"></label>
+        <input asp-for="Clasificacion" class="form-control" />
+        <span asp-validation-for="Clasificacion" class="text-danger"></span>
+    </div>
+ 
+    <div class="form-check mb-3">
+        <input asp-for="Disponible" class="form-check-input" />
+        <label asp-for="Disponible" class="form-check-label"></label>
+    </div>
+ 
+    <button type="submit" class="btn btn-success">Guardar</button>
+    <a asp-action="Index" class="btn btn-secondary">Volver</a>
+</form>
+ 
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

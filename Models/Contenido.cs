@@ -29,4 +29,13 @@ public class Contenido
     public bool Disponible { get; set; } = true;
  
     public DateTime FechaCreacionUtc { get; set; } = DateTime.UtcNow;
+
+    public bool Destacado { get; set; }
+
+    public DateTime FechaRegistro { get; set; }
+
+    public int? GeneroId {get; set; }
+
+    public Genero? Genero {get; set;}
+
 }

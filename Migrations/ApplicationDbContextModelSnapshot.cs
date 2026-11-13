@@ -38,6 +38,9 @@ namespace DisneyPlusLab.Migrations
                         .HasMaxLength(800)
                         .HasColumnType("character varying(800)");
 
+                    b.Property<bool>("Destacado")
+                        .HasColumnType("boolean");
+
                     b.Property<bool>("Disponible")
                         .HasColumnType("boolean");
 
@@ -49,6 +52,12 @@ namespace DisneyPlusLab.Migrations
 
                     b.Property<DateOnly>("FechaEstreno")
                         .HasColumnType("date");
+
+                    b.Property<DateTime>("FechaRegistro")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<int?>("GeneroId")
+                        .HasColumnType("integer");
 
                     b.Property<string>("Tipo")
                         .IsRequired()
@@ -62,7 +71,41 @@ namespace DisneyPlusLab.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("GeneroId");
+
                     b.ToTable("Contenidos");
+                });
+
+            modelBuilder.Entity("DisneyPlusLab.Models.Genero", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Nombre")
+                        .IsRequired()
+                        .HasMaxLength(60)
+                        .HasColumnType("character varying(60)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Genero");
+                });
+
+            modelBuilder.Entity("DisneyPlusLab.Models.Contenido", b =>
+                {
+                    b.HasOne("DisneyPlusLab.Models.Genero", "Genero")
+                        .WithMany("Contenidos")
+                        .HasForeignKey("GeneroId");
+
+                    b.Navigation("Genero");
+                });
+
+            modelBuilder.Entity("DisneyPlusLab.Models.Genero", b =>
+                {
+                    b.Navigation("Contenidos");
                 });
 #pragma warning restore 612, 618
         }

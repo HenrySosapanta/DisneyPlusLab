@@ -1,0 +1,36 @@
+@model IEnumerable<DisneyPlusLab.Models.Contenido>
+ 
+@{
+    ViewData["Title"] = "Catálogo";
+}
+ 
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h1>Catálogo de contenidos</h1>
+    <a asp-action="Create" class="btn btn-success">Nuevo contenido</a>
+</div>
+ 
+<table class="table table-striped table-bordered align-middle">
+    <thead>
+        <tr>
+            <th>Título</th>
+            <th>Tipo</th>
+            <th>Estreno</th>
+            <th>Duración</th>
+            <th>Clasificación</th>
+            <th>Disponible</th>
+        </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.Titulo</td>
+            <td>@item.Tipo</td>
+            <td>@item.FechaEstreno.ToString("yyyy-MM-dd")</td>
+            <td>@item.DuracionMinutos min</td>
+            <td>@item.Clasificacion</td>
+            <td>@(item.Disponible ? "Sí" : "No")</td>
+        </tr>
+    }
+    </tbody>
+</table>
